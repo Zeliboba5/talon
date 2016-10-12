@@ -163,7 +163,7 @@ def _mark_candidate_indexes(lines, candidate):
     'cdc'
     """
     # at first consider everything to be potential signature lines
-    markers = bytearray('c'*len(candidate))
+    markers = ['c' for _ in lines]
 
     # mark lines starting from bottom up
     for i, line_idx in reversed(list(enumerate(candidate))):
@@ -185,5 +185,5 @@ def _process_marked_candidate_indexes(candidate, markers):
     >>> _process_marked_candidate_indexes([9, 12, 14, 15, 17], 'clddc')
     [15, 17]
     """
-    match = RE_SIGNATURE_CANDIDATE.match(markers[::-1])
+    match = RE_SIGNATURE_CANDIDATE.match(''.join(markers[::-1]))
     return candidate[-match.end('candidate'):] if match else []

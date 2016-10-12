@@ -81,7 +81,7 @@ def _mark_lines(lines, sender):
     candidate = get_signature_candidate(lines)
 
     # at first consider everything to be text no signature
-    markers = bytearray('t'*len(lines))
+    markers = ['t' for _ in lines]
 
     # mark lines starting from bottom up
     # mark only lines that belong to candidate
